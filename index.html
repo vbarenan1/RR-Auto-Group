@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RR Auto Group</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+background:#0b0b0b;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+animation:fadeOut 1s ease 3s forwards;
+}
+
+.car{
+font-size:50px;
+position:absolute;
+left:-100px;
+animation:carMove 2s linear forwards;
+}
+
+.logo-intro{
+width:120px;
+opacity:0;
+animation:fadeLogo 2s ease 1s forwards;
+}
+
+@keyframes carMove{
+to{left:110%;}
+}
+
+@keyframes fadeLogo{
+to{opacity:1;}
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(0,0,0,0.95);
+z-index:999;
+}
+
+nav img{
+height:55px;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+color:#fff;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#c8a95a;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1502877338535-766e1452684a');
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+animation:fadeUp 1s ease;
+}
+
+.hero p{
+max-width:600px;
+opacity:0.85;
+margin-bottom:20px;
+animation:fadeUp 1.5s ease;
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+cursor:pointer;
+margin:5px;
+background:#c8a95a;
+color:#000;
+font-weight:600;
+border-radius:6px;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 10px #c8a95a;
+}
+
+/* SECTIONS */
+section{
+padding:80px 20px;
+text-align:center;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+width:250px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px #c8a95a;
+}
+
+/* FLOAT BUTTONS */
+.float{
+position:fixed;
+right:20px;
+bottom:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+z-index:999;
+}
+
+.float a{
+padding:15px;
+border-radius:50%;
+color:#fff;
+text-decoration:none;
+font-size:20px;
+text-align:center;
+}
+
+.whatsapp{background:#25D366;}
+.instagram{background:#E1306C;}
+
+footer{
+padding:20px;
+background:#000;
+text-align:center;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+<div class="car">🚗💨</div>
+<img src="data:image/png;base64,COLE_AQUI_SUA_LOGO_BASE64" class="logo-intro">
+</div>
+
+<!-- NAVBAR -->
+<nav>
+<img src="data:image/png;base64,COLE_AQUI_SUA_LOGO_BASE64">
+<ul>
+<li><a href="#home">Início</a></li>
+<li><a href="#sobre">Quem Somos</a></li>
+<li><a href="#servicos">Serviços</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h1>RR Auto Group</h1>
+<p>Compra e venda de veículos premium com oportunidades exclusivas e alto padrão.</p>
+
+<a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr">
+<button class="btn">Instagram</button>
+</a>
+
+<a href="https://wa.me/5513997011215">
+<button class="btn">WhatsApp</button>
+</a>
+</section>
+
+<section id="sobre">
+<h2>Quem Somos</h2>
+<p>
+Atuamos com compra e venda de veículos selecionados, oferecendo oportunidades exclusivas,
+segurança e negociações diferenciadas no mercado automotivo.
+</p>
+</section>
+
+<section id="servicos">
+<h2>Serviços</h2>
+<div class="cards">
+<div class="card">Compra e Venda de Veículos</div>
+<div class="card">Veículos Selecionados</div>
+<div class="card">Oportunidades Exclusivas</div>
+<div class="card">Consultoria Automotiva</div>
+</div>
+</section>
+
+<section id="contato">
+<h2>Contato</h2>
+
+<a href="https://wa.me/5513997011215">
+<button class="btn">WhatsApp</button>
+</a>
+
+<a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr">
+<button class="btn">Instagram</button>
+</a>
+</section>
+
+<div class="float">
+<a href="https://wa.me/5513997011215" class="whatsapp">📱</a>
+<a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr" class="instagram">📸</a>
+</div>
+
+<footer>
+<p>RR Auto Group © <span id="year"></span></p>
+</footer>
+
+<script>
+document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+
+</body>
+</html>
