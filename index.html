@@ -3,168 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RR Auto Group | Alto Padrão Automotivo</title>
+    <title>RR Auto Group | Compra e Venda de Veículos Premium</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
             --primary-black: #0b0b0b;
             --secondary-black: #1a1a1a;
-            --gold: #c8a95a;
+            --gold: #c8a95a; /* Mantido como cor de destaque sofisticada */
+            --accent-red: #8b0000; /* Vermelho escuro para complementar a logo */
+            --silver-metal: #a6a6a6; /* Prata metálico para complementar a logo */
             --white: #ffffff;
             --gray: #a0a0a0;
-            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--primary-black); color: var(--white); overflow-x: hidden; }
-
-        /* --- INTRO ANIMATION CRUCIAL --- */
-        #intro-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; display: flex;
-            justify-content: center; align-items: center; overflow: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .car-anim {
-            position: absolute;
-            width: 500px; /* Tamanho do carro na animação */
-            left: -600px;
-            filter: brightness(0.8) drop-shadow(0 0 15px var(--gold));
-            z-index: 10001;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .intro-logo-wrapper {
-            opacity: 0;
-            transform: scale(0.9);
-            text-align: center;
-            z-index: 10002;
+        body {
+            background-color: var(--primary-black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-
-        .intro-logo-wrapper img {
-            max-width: 250px;
-            height: auto;
-        }
-
-        /* Keyframes Animação */
-        @keyframes driveAcross {
-            0% { left: -600px; opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { left: 110%; opacity: 0; }
-        }
-
-        .animate-car { animation: driveAcross 2.8s cubic-bezier(0.45, 0, 0.55, 1) forwards; }
-        .fade-in-brand { opacity: 1 !important; transform: scale(1) !important; transition: all 1.2s ease; }
 
         /* --- NAVBAR --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 25px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; transition: var(--transition);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(11, 11, 11, 0.95);
+            border-bottom: 1px solid rgba(166, 166, 166, 0.1); /* Prata sutil */
+            backdrop-filter: blur(10px);
         }
-        nav.scrolled {
-            background: rgba(11, 11, 11, 0.98); padding: 15px 8%;
-            border-bottom: 1px solid rgba(200, 169, 90, 0.3); backdrop-filter: blur(10px);
+
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
-        .nav-logo img { height: 50px; width: auto; object-fit: contain; }
-        .nav-links { display: flex; list-style: none; gap: 40px; }
+
+        .logo-container img {
+            height: 60px; /* Ajuste o tamanho da logo conforme necessário */
+            width: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 5px rgba(166, 166, 166, 0.3)); /* Brilho prateado sutil */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
         .nav-links a {
-            text-decoration: none; color: var(--white); font-size: 0.85rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            transition: var(--transition);
+            position: relative;
         }
-        .nav-links a:hover { color: var(--gold); }
 
-        /* --- HERO --- */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070') no-repeat center center/cover;
-            padding: 0 20px;
-        }
-        .hero h1 { font-size: 4.5rem; letter-spacing: 12px; text-transform: uppercase; margin-bottom: 10px; }
-        .hero h2 { color: var(--gold); letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-transform: uppercase; }
-        .hero p { max-width: 650px; color: var(--gray); margin-bottom: 40px; font-size: 1.1rem; }
-        
-        .btn-group { display: flex; gap: 20px; }
-        .btn {
-            padding: 16px 35px; text-decoration: none; text-transform: uppercase;
-            font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; transition: var(--transition);
-            display: flex; align-items: center; gap: 10px; border: 1px solid transparent;
-        }
-        .btn-gold { background: var(--gold); color: #000; }
-        .btn-gold:hover { background: transparent; color: var(--gold); border-color: var(--gold); transform: translateY(-5px); }
-        .btn-line { border: 1px solid #fff; color: #fff; }
-        .btn-line:hover { background: #fff; color: #000; transform: translateY(-5px); }
-
-        /* --- SECTIONS --- */
-        section { padding: 120px 10%; }
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-header h3 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 5px; position: relative; padding-bottom: 15px; }
-        .section-header h3::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: var(--gold); }
-
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .about-img img { width: 100%; border-radius: 2px; filter: grayscale(0.3); }
-        .about-content p { font-size: 1.1rem; color: var(--gray); margin-bottom: 25px; line-height: 1.8; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-item { background: var(--secondary-black); padding: 50px 35px; border: 1px solid #222; transition: var(--transition); }
-        .service-item:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .service-item i { font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; }
-        .service-item h4 { margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase; }
-        .service-item p { color: var(--gray); font-size: 0.9rem; }
-
-        /* --- CONTACT --- */
-        .contact-box { background: #111; padding: 80px 40px; text-align: center; border: 1px solid var(--gold); }
-        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-        .contact-card { 
-            background: #fff; color: #000; padding: 20px 40px; border-radius: 50px; 
-            text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 10px;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--silver-metal), var(--accent-red)); /* Gradiente inspirado na logo */
             transition: var(--transition);
         }
-        .contact-card.ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: #fff; }
-        .contact-card.wa { background: #25d366; color: #fff; }
-        .contact-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
 
-        /* --- FLOAT --- */
-        .float-wrap { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
-        .f-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; transition: 0.3s; }
-        .f-wa { background: #25d366; }
-        .f-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
-        .f-btn:hover { transform: scale(1.1); }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-        footer { padding: 60px 10%; background: #050505; text-align: center; border-top: 1px solid #151515; }
-        .footer-logo { font-size: 1.5rem; color: var(--gold); font-weight: 700; letter-spacing: 3px; margin-bottom: 20px; display: block; }
-        .copy { color: #444; font-size: 0.8rem; margin-top: 20px; }
+        .nav-links a:hover {
+            color: var(--silver-metal);
+        }
 
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 2.5rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 80px; /* Compensa a navbar fixa */
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--white), var(--silver-metal), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.5));
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, var(--silver-metal), #d9d9d9); /* Botão prateado metálico */
+            color: var(--primary-black);
+        }
+
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--silver-metal);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(166, 166, 166, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--accent-red);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-red);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h3 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .section-title h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--silver-metal), var(--accent-red));
+        }
+
+        /* --- QUEM SOMOS --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(166, 166, 166, 0.2);
+            border-radius: 8px;
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- SERVIÇOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--secondary-black);
+            padding: 50px 30px;
+            text-align: center;
+            border: 1px solid rgba(166, 166, 166, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .service-card i {
+            font-size: 3.5rem;
+            color: var(--accent-red);
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.5));
+        }
+
+        .service-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTATO --- */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            background: var(--secondary-black);
+            padding: 60px;
+            border-radius: 8px;
+            border: 1px solid rgba(166, 166, 166, 0.1);
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-btn-large {
+            padding: 20px 50px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .c-wa { 
+            background: #25d366; 
+            border: 2px solid transparent;
+        }
+        .c-wa:hover {
+            background: transparent;
+            color: #25d366;
+            border-color: #25d366;
+        }
+
+        .c-ig { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+            border: 2px solid transparent;
+        }
+        .c-ig:hover {
+            background: transparent;
+            border-color: #dc2743;
+            color: #dc2743;
+        }
+
+        .contact-btn-large:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- FLOATING BUTTONS --- */
+        .floating-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+
+        .float-wa { background-color: #25d366; }
+        .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+
+        .float-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 8% 30px;
+            background: #050505;
+            text-align: center;
+            border-top: 1px solid rgba(166, 166, 166, 0.1);
+        }
+
+        .footer-logo-container {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-container img {
+            height: 70px;
+            width: auto;
+            filter: grayscale(100%) brightness(150%); /* Torna a logo do rodapé monocromática prateada */
+        }
+
+        .footer-socials {
+            margin-bottom: 30px;
+        }
+
+        .footer-socials a {
+            color: var(--gray);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-red);
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; letter-spacing: 5px; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .nav-links { display: none; } /* Simplified for demo, mobile needs a burger menu */
+            .hero-btns { flex-direction: column; width: 100%; max-width: 300px; gap: 15px; }
+            .hero p { font-size: 1rem; }
+            section { padding: 80px 5%; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; letter-spacing: 3px; }
+            .hero h2 { font-size: 1rem; letter-spacing: 2px; }
+            .contact-btn-large { width: 100%; justify-content: center; padding: 15px 30px; font-size: 1rem; }
+            .logo-container img { height: 50px; }
+            .section-title h3 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="intro-overlay">
-        <img src="https://www.pngall.com/wp-content/uploads/2/Porsche-911-PNG-File.png" class="car-anim" id="intro-car" alt="Luxury Car">
-        
-        <div class="intro-logo-wrapper" id="brand-logo">
-            <img src="SUA_LOGO_AQUI.png" alt="RR Auto Group Logo">
-            <h2 style="color: var(--gold); letter-spacing: 10px; margin-top: 15px;">RR AUTO GROUP</h2>
-        </div>
-    </div>
-
     <nav id="navbar">
-        <div class="nav-logo">
-            <img src="SUA_LOGO_AQUI.png" alt="RR Auto Group">
+        <div class="logo-container">
+            <a href="#">
+                <img src="image_0.png" alt="RR Auto Group Logo">
+            </a>
         </div>
         <ul class="nav-links">
             <li><a href="#inicio">Início</a></li>
@@ -175,122 +468,125 @@
     </nav>
 
     <section class="hero" id="inicio">
-        <h1 data-aos="fade-up">RR Auto Group</h1>
-        <h2 data-aos="fade-up" data-aos-delay="200">Compra e venda de veículos premium</h2>
-        <p data-aos="fade-up" data-aos-delay="400">Excelência e exclusividade no mercado automotivo. Oferecemos veículos selecionados com o mais alto padrão de qualidade e segurança.</p>
-        <div class="btn-group" data-aos="fade-up" data-aos-delay="600">
-            <a href="https://wa.me/5513997011215" target="_blank" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://www.instagram.com/autogrouprr" target="_blank" class="btn btn-line"><i class="fab fa-instagram"></i> Instagram</a>
+        <h1 data-aos="fade-down" data-aos-duration="1000">RR Auto Group</h1>
+        <h2 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Compra e venda de veículos premium</h2>
+        <p data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+            Trabalhamos com veículos selecionados e oportunidades exclusivas no mercado automotivo, oferecendo qualidade, segurança e alto padrão em cada negociação.
+        </p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+            <a href="https://wa.me/5513997011215" target="_blank" class="btn btn-gold">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr" target="_blank" class="btn btn-outline">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
         </div>
     </section>
 
     <section id="quem-somos">
-        <div class="section-header" data-aos="fade-up">
+        <div class="section-title" data-aos="fade-down">
             <h3>Quem Somos</h3>
         </div>
-        <div class="about-grid">
-            <div class="about-img" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1562141989-c5c79ac8f576?q=80&w=1000" alt="Showroom Luxo">
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+                <p>Na <strong>RR Auto Group</strong>, nossa paixão por automóveis se reflete na excelência do nosso atendimento. Somos especialistas no segmento de luxo e alta performance, dedicados exclusivamente ao <strong>alto padrão automotivo</strong>.</p>
+                <p>Nossa curadoria é rigorosa: atuamos com a <strong>compra e venda de veículos selecionados</strong> que atendem aos mais exigentes critérios técnicos e estéticos, garantindo total procedência e satisfação.</p>
+                <p>Buscamos constantemente <strong>oportunidades exclusivas</strong> para clientes que não abrem mão de sofisticação, segurança e transparência. Na RR Auto Group, cada negócio é tratado com a exclusividade que você merece.</p>
             </div>
-            <div class="about-content" data-aos="fade-left">
-                <p>A <strong>RR Auto Group</strong> nasceu do desejo de transformar a experiência de adquirir um veículo de luxo em algo memorável e transparente.</p>
-                <p>Atuamos com foco absoluto no <strong>alto padrão automotivo</strong>, realizando a <strong>compra e venda de veículos selecionados</strong> sob o mais rigoroso controle de qualidade e procedência.</p>
-                <p>Nossa missão é conectar clientes exigentes a <strong>oportunidades exclusivas</strong>, garantindo um negócio seguro, discreto e excepcional.</p>
+            <div class="about-image" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1542362567-b055002b977b?auto=format&fit=crop&q=80&w=1000" alt="Veículo de luxo em ambiente sofisticado">
             </div>
         </div>
     </section>
 
-    <section id="servicos" style="background: #080808;">
-        <div class="section-header" data-aos="fade-up">
-            <h3>Nossa Atuação</h3>
+    <section id="servicos" style="background-color: #0d0d0d;">
+        <div class="section-title" data-aos="fade-down">
+            <h3>Nossos Serviços</h3>
         </div>
         <div class="services-grid">
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-hand-holding-usd"></i>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-car-side"></i>
                 <h4>Compra e Venda</h4>
-                <p>Negociações ágeis com a melhor valorização do seu patrimônio automotivo.</p>
+                <p>Processo ágil, seguro e transparente para a aquisição ou venda do seu veículo, com valorização justa.</p>
             </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-gem"></i>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-check-double"></i>
                 <h4>Veículos Selecionados</h4>
-                <p>Curadoria exclusiva de modelos premium com histórico comprovado e estado de novo.</p>
+                <p>Acesso a um estoque exclusivo de veículos com histórico comprovado e estado de conservação impecável.</p>
             </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="300">
-                <i class="fas fa-key"></i>
-                <h4>Oportunidades Únicas</h4>
-                <p>Acesso a veículos configurados sob medida e edições limitadas do mercado.</p>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-gem"></i>
+                <h4>Oportunidades Exclusivas</h4>
+                <p>Curadoria de modelos raros e condições especiais para colecionadores e entusiastas exigentes.</p>
+            </div>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-handshake"></i>
+                <h4>Consultoria Automotiva</h4>
+                <p>Assessoria personalizada para encontrar o modelo ideal que se adapta perfeitamente ao seu estilo de vida.</p>
             </div>
         </div>
     </section>
 
     <section id="contato">
-        <div class="contact-box" data-aos="flip-up">
-            <h3 style="font-size: 2rem; letter-spacing: 3px; margin-bottom: 20px;">PRONTO PARA O PRÓXIMO NÍVEL?</h3>
-            <p style="color: var(--gray);">Entre em contato com nossos especialistas e agende um atendimento exclusivo.</p>
-            <div class="contact-links">
-                <a href="https://wa.me/5513997011215" class="contact-card wa" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WHATSAPP
+        <div class="section-title" data-aos="fade-down">
+            <h3>Contato</h3>
+        </div>
+        <div class="contact-container" data-aos="flip-up">
+            <p style="margin-bottom: 20px; font-size: 1.2rem; text-align: center; color: var(--gray);">Entre em contato conosco e descubra sua próxima conquista automotiva.</p>
+            <div class="contact-btns">
+                <a href="https://wa.me/5513997011215" target="_blank" class="contact-btn-large c-wa">
+                    <i class="fab fa-whatsapp"></i> Conversar via WhatsApp
                 </a>
-                <a href="https://www.instagram.com/autogrouprr" class="contact-card ig" target="_blank">
-                    <i class="fab fa-instagram"></i> INSTAGRAM
+                <a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr" target="_blank" class="contact-btn-large c-ig">
+                    <i class="fab fa-instagram"></i> Seguir no Instagram
                 </a>
             </div>
         </div>
     </section>
 
-    <div class="float-wrap">
-        <a href="https://www.instagram.com/autogrouprr" target="_blank" class="f-btn f-ig"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/5513997011215" target="_blank" class="f-btn f-wa"><i class="fab fa-whatsapp"></i></a>
+    <div class="floating-container">
+        <a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr" target="_blank" class="float-btn float-ig" title="Siga-nos no Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/5513997011215" target="_blank" class="float-btn float-wa" title="Fale conosco no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
 
     <footer>
-        <span class="footer-logo">RR AUTO GROUP</span>
-        <p style="color: var(--gray); font-size: 0.9rem;">Alto Padrão Automotivo | Compra e Venda de Veículos Premium</p>
-        <p class="copy">&copy; <span id="year"></span> RR Auto Group. Todos os direitos reservados.</p>
+        <div class="footer-logo-container">
+            <img src="image_0.png" alt="RR Auto Group Logo">
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/autogrouprr?igsh=eWM3bWxzczJqa3Ju&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5513997011215" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="copyright">&copy; <span id="year"></span> RR Auto Group. Todos os direitos reservados.<br>Sua referência em Alto Padrão Automotivo.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // ANIMAÇÃO DE INTRODUÇÃO
-        window.addEventListener('load', () => {
-            const car = document.getElementById('intro-car');
-            const brand = document.getElementById('brand-logo');
-            const overlay = document.getElementById('intro-overlay');
-
-            // Inicia o carro cruzando a tela
-            setTimeout(() => {
-                car.classList.add('animate-car');
-            }, 500);
-
-            // Após o carro passar, mostra a logo
-            setTimeout(() => {
-                brand.classList.add('fade-in-brand');
-            }, 2000);
-
-            // Desaparece o overlay e libera o scroll
-            setTimeout(() => {
-                overlay.style.transition = "opacity 1s ease";
-                overlay.style.opacity = "0";
-                setTimeout(() => {
-                    overlay.style.display = "none";
-                    document.body.style.overflow = "auto";
-                }, 1000);
-            }, 4500);
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out',
         });
 
-        // Bloquear scroll na intro
-        document.body.style.overflow = "hidden";
-
-        // Navbar scroll effect
-        window.onscroll = () => {
+        // Navbar Scroll Effect: Adds border/background on scroll
+        window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.pageYOffset > 100) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        };
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
+                nav.style.borderBottom = '1px solid rgba(139, 0, 0, 0.3)'; /* Adiciona borda vermelha sutil no scroll */
+            } else {
+                nav.style.boxShadow = 'none';
+                nav.style.borderBottom = '1px solid rgba(166, 166, 166, 0.1)';
+            }
+        });
 
-        document.getElementById('year').innerText = new Date().getFullYear();
+        // Dynamic Year for Copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
