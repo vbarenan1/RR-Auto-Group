@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -17,9 +16,8 @@
             --black: #050505;
             --dark-bg: #0b0b0b;
             --dark-card: #151515;
-            /* Cores inspiradas na logo (image_1.png) */
             --silver: #e0e0e0;
-            --crimson: #a31111; /* Vermelho profundo metálico */
+            --crimson: #a31111;
             --crimson-hover: #cf1414;
             --white: #ffffff;
             --gray: #999;
@@ -35,7 +33,7 @@
             position: fixed; top: 0; width: 100%; padding: 10px 8%;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: rgba(5, 5, 5, 0.98);
-            border-bottom: 1px solid rgba(224, 224, 224, 0.05); /* Prata sutil */
+            border-bottom: 1px solid rgba(224, 224, 224, 0.05);
             backdrop-filter: blur(10px);
         }
         .nav-logo img { height: 75px; width: auto; filter: drop-shadow(0 0 10px rgba(163, 17, 17, 0.4)); }
@@ -44,7 +42,7 @@
             text-decoration: none; color: var(--white); font-size: 0.8rem;
             text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
         }
-        .nav-links a:hover { color: var(--crimson); text-shadow: 0 0 10px rgba(163, 17, 17, 0.6); }
+        .nav-links a:hover { color: var(--crimson); }
 
         /* --- HERO --- */
         .hero {
@@ -54,87 +52,53 @@
                         url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070') no-repeat center center/cover;
             padding: 0 20px;
         }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 12px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; color: var(--white); }
-        .hero h2 { color: var(--crimson); font-size: clamp(1rem, 4vw, 1.4rem); letter-spacing: 5px; font-weight: 300; margin-bottom: 35px; text-transform: uppercase; text-shadow: 0 0 15px rgba(163, 17, 17, 0.6); }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 12px; text-transform: uppercase; font-weight: 700; }
+        .hero h2 { color: var(--crimson); font-size: clamp(1rem, 4vw, 1.4rem); letter-spacing: 5px; font-weight: 300; margin-bottom: 35px; text-transform: uppercase; }
         
-        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
         .btn {
             padding: 16px 35px; text-decoration: none; text-transform: uppercase;
             font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; transition: var(--transition);
             display: flex; align-items: center; gap: 10px; border-radius: 4px;
         }
-        .btn-crimson { background: var(--crimson); color: var(--white); box-shadow: 0 5px 15px rgba(163, 17, 17, 0.3); }
-        .btn-crimson:hover { background: var(--crimson-hover); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(163, 17, 17, 0.5); }
-        .btn-outline { border: 1px solid var(--silver); color: var(--silver); }
-        .btn-outline:hover { background: var(--silver); color: #000; transform: translateY(-5px); }
+        .btn-crimson { background: var(--crimson); color: var(--white); }
+        .btn-crimson:hover { background: var(--crimson-hover); transform: translateY(-5px); }
 
-        /* --- SHOWROOM (INSTAGRAM STYLE) --- */
-        section { padding: 100px 8%; background-color: var(--dark-bg); }
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 100px 8%; }
         .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h3 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 5px; position: relative; display: inline-block; color: var(--white); }
-        /* Divisor com gradiente Prata e Crimson */
+        .section-title h3 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 5px; position: relative; display: inline-block; }
         .section-title h3::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, var(--silver), var(--crimson), var(--silver)); }
 
-        .showroom-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .showroom-item {
-            position: relative; overflow: hidden; aspect-ratio: 1/1; cursor: pointer;
-            border: 1px solid rgba(224,224,224,0.05); /* Prata sutil */
-        }
-        .showroom-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .showroom-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.75); display: flex; justify-content: center;
-            align-items: center; opacity: 0; transition: var(--transition);
-        }
-        .showroom-item:hover img { transform: scale(1.05); filter: grayscale(1); } /* Efeito agressivo */
-        .showroom-item:hover .showroom-overlay { opacity: 1; }
-        .showroom-overlay i { font-size: 2.5rem; color: var(--crimson); filter: drop-shadow(0 0 10px rgba(163, 17, 17, 0.8)); }
+        /* --- SOBRE NÓS --- */
+        .about-container { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h4 { color: var(--crimson); font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        .about-text p { color: var(--gray); margin-bottom: 25px; font-size: 1.1rem; border-left: 3px solid var(--crimson); padding-left: 20px; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--silver); text-transform: uppercase; letter-spacing: 1px; }
+        .feature-item i { color: var(--crimson); }
+        .about-image { flex: 1; min-width: 300px; border-radius: 4px; overflow: hidden; border: 1px solid rgba(224,224,224,0.1); }
+        .about-image img { width: 100%; height: auto; display: block; filter: grayscale(0.5); transition: 0.5s; }
+        .about-image:hover img { filter: grayscale(0); }
 
-        /* --- SERVIÇOS --- */
-        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: var(--dark-card); padding: 50px 35px; border: 1px solid #1a1a1a; text-align: center; transition: var(--transition); border-radius: 4px; }
-        .service-card:hover { border-color: var(--crimson); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(163, 17, 17, 0.2); }
-        .service-card i { font-size: 3rem; color: var(--crimson); margin-bottom: 25px; filter: drop-shadow(0 0 10px rgba(163, 17, 17, 0.5)); }
-        .service-card h4 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; color: var(--silver); }
-        .service-card p { color: var(--gray); font-size: 0.95rem; }
+        /* --- SHOWROOM --- */
+        .showroom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .showroom-item { position: relative; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(224,224,224,0.05); }
+        .showroom-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .showroom-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition); text-decoration: none; }
+        .showroom-item:hover .showroom-overlay { opacity: 1; }
+        .showroom-overlay i { font-size: 2.5rem; color: var(--crimson); }
 
         /* --- CONTATO --- */
-        .contact-area { background: var(--dark-card); padding: 60px 40px; border-radius: 4px; text-align: center; border: 1px solid #1a1a1a; max-width: 900px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .contact-area h3 { color: var(--silver); }
-        .contact-btn-large {
-            display: inline-flex; align-items: center; gap: 15px; padding: 22px 45px;
-            background: #25d366; color: #fff; text-decoration: none; border-radius: 50px;
-            font-weight: 700; font-size: 1.1rem; margin-top: 30px; transition: var(--transition);
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .contact-btn-large:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); }
-
-        /* --- FLOAT WA --- */
-        .float-wa {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: #25d366; color: #fff; border-radius: 50%; display: flex;
-            justify-content: center; align-items: center; font-size: 30px; z-index: 999;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: var(--transition);
-        }
-        .float-wa:hover { transform: scale(1.1) rotate(10deg); }
+        .contact-area { background: var(--dark-card); padding: 60px 40px; border-radius: 4px; text-align: center; border: 1px solid #1a1a1a; max-width: 900px; margin: 0 auto; }
+        .contact-btn-large { display: inline-flex; align-items: center; gap: 15px; padding: 22px 45px; background: #25d366; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; margin-top: 30px; transition: var(--transition); }
 
         /* --- FOOTER --- */
-        footer { padding: 80px 8% 40px; background: #010101; text-align: center; border-top: 1px solid rgba(224, 224, 224, 0.03); }
-        .footer-logo img { height: 100px; margin-bottom: 30px; filter: grayscale(1) opacity(0.5); transition: 0.5s; }
-        .footer-logo img:hover { filter: grayscale(0) opacity(1); drop-shadow(0 0 10px rgba(163, 17, 17, 0.5)); }
-        .copy { color: #333; font-size: 0.75rem; margin-top: 30px; letter-spacing: 2px; text-transform: uppercase; }
+        footer { padding: 60px 8%; background: #010101; text-align: center; }
+        .footer-logo img { height: 80px; margin-bottom: 20px; filter: grayscale(1) opacity(0.5); }
+        .copy { color: #333; font-size: 0.75rem; margin-top: 20px; letter-spacing: 2px; }
 
-        @media (max-width: 992px) {
-            .nav-links { display: none; }
-            section { padding: 80px 5%; }
-            .hero h1 { letter-spacing: 5px; }
-            .hero h2 { letter-spacing: 3px; }
-            .contact-btn-large { padding: 18px 30px; font-size: 0.9rem; }
-        }
+        @media (max-width: 992px) { .nav-links { display: none; } .about-container { flex-direction: column; text-align: center; } .about-text p { border-left: none; padding-left: 0; } .about-features { justify-items: center; } }
     </style>
 </head>
 <body>
@@ -145,105 +109,81 @@
         </a>
         <ul class="nav-links">
             <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
             <li><a href="#showroom">Showroom</a></li>
-            <li><a href="#servicos">Serviços</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="inicio">
-        <h1 data-aos="fade-down" data-aos-duration="1200">RR Auto Group</h1>
+        <h1 data-aos="fade-down">RR Auto Group</h1>
         <h2 data-aos="fade-up" data-aos-delay="300">Performance & Alto Padrão Automotivo</h2>
-        <div class="btn-group" data-aos="fade-up" data-aos-delay="600">
-            <a href="https://wa.me/5513997011215" target="_blank" class="btn btn-crimson"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://www.instagram.com/autogrouprr" target="_blank" class="btn btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://wa.me/5513997011215" target="_blank" class="btn btn-crimson" data-aos="fade-up" data-aos-delay="600">
+            <i class="fab fa-whatsapp"></i> Falar com Consultor
+        </a>
+    </section>
+
+    <section id="sobre" style="background-color: #080808;">
+        <div class="section-title" data-aos="fade-up">
+            <h3>Nossa História</h3>
+        </div>
+        <div class="about-container">
+            <div class="about-text" data-aos="fade-right">
+                <h4>Paixão e Credibilidade</h4>
+                <p>A RR Auto Group nasceu com o propósito de elevar a experiência de compra de veículos premium. Unimos a paixão automotiva com uma curadoria rigorosa, garantindo que cada modelo em nosso estoque atenda aos mais altos critérios de performance e elegância.</p>
+                <div class="about-features">
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Vistoria Cautelar</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Procedência</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Transparência</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Logística VIP</div>
+                </div>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1562141989-c5c79ac8f576?q=80&w=1000" alt="Showroom Luxo">
+            </div>
         </div>
     </section>
 
     <section id="showroom">
         <div class="section-title" data-aos="fade-up">
-            <h3>Veículos Selecionados</h3>
-            <p style="color: var(--gray); margin-top: 10px;">Confira nossas exclusividades diretamente no Instagram</p>
+            <h3>Showroom</h3>
         </div>
         <div class="showroom-grid">
             <div class="showroom-item" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000" alt="Porsche 911">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80" alt="Porsche">
                 <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="showroom-item" data-aos="zoom-in" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000" alt="Chevrolet Corvette">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80" alt="Ferrari">
                 <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="showroom-item" data-aos="zoom-in" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1000" alt="Ferrari 488">
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80" alt="Mercedes">
                 <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="showroom-item" data-aos="zoom-in" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000" alt="BMW M4">
-                <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="showroom-item" data-aos="zoom-in" data-aos-delay="400">
-                <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1000" alt="Audi R8">
-                <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="showroom-item" data-aos="zoom-in" data-aos-delay="500">
-                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1000" alt="Mercedes-AMG GT">
-                <a href="https://www.instagram.com/autogrouprr" target="_blank" class="showroom-overlay"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicos" style="background: #010101;">
-        <div class="section-title" data-aos="fade-up">
-            <h3>Nossa Atuação</h3>
-        </div>
-        <div class="services-container">
-            <div class="service-card" data-aos="fade-up">
-                <i class="fas fa-handshake"></i>
-                <h4>Compra e Venda</h4>
-                <p>Consultoria especializada para a aquisição ou venda segura do seu veículo premium.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="150">
-                <i class="fas fa-search"></i>
-                <h4>Curadoria Exclusiva</h4>
-                <p>Estoque rigorosamente selecionado com os melhores modelos do mercado automotivo.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-gauge-high"></i>
-                <h4>Performance</h4>
-                <p>Foco absoluto em veículos de alta performance e excelência técnica.</p>
             </div>
         </div>
     </section>
 
     <section id="contato">
         <div class="contact-area" data-aos="zoom-in">
-            <h3 style="font-size: 2.2rem; letter-spacing: 2px; text-transform: uppercase;">Atendimento Premium</h3>
-            <p style="color: var(--gray); margin-top: 15px; font-size: 1.1rem;">Fale agora com nossos consultores para uma avaliação ou busca personalizada.</p>
+            <h3 style="text-transform: uppercase; letter-spacing: 2px;">O seu próximo nível começa aqui</h3>
+            <p style="color: var(--gray); margin-top: 15px;">Fale conosco para uma avaliação ou busca personalizada de veículos.</p>
             <a href="https://wa.me/5513997011215" target="_blank" class="contact-btn-large">
-                <i class="fab fa-whatsapp"></i> CONVERSAR NO WHATSAPP
+                <i class="fab fa-whatsapp"></i> INICIAR ATENDIMENTO
             </a>
         </div>
     </section>
 
-    <a href="https://wa.me/5513997011215" class="float-wa" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <footer>
         <div class="footer-logo">
-            <img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg" alt="Logo RR footer">
-        </div>
-        <div style="margin-bottom: 25px;">
-            <a href="https://www.instagram.com/autogrouprr" target="_blank" style="color: var(--gray); margin: 0 15px; font-size: 1.6rem; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/5513997011215" target="_blank" style="color: var(--gray); margin: 0 15px; font-size: 1.6rem; transition: 0.3s;"><i class="fab fa-whatsapp"></i></a>
+            <img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg" alt="Logo Footer">
         </div>
         <p class="copy">© <span id="year"></span> RR AUTO GROUP. ALTO PADRÃO AUTOMOTIVO.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
+        AOS.init({ duration: 1000, once: true });
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
