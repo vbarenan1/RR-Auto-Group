@@ -1,443 +1,294 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RR Auto Group | Performance & Alto Padrão</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            --black: #050505;
-            --dark-bg: #0b0b0b;
-            --dark-card: #121212;
-            --crimson: #a31111;
-            --crimson-glow: rgba(163, 17, 17, 0.6);
-            --white: #ffffff;
-            --gray: #888;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+<title>RR Auto Group | Alto Padrão Automotivo</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--black); color: var(--white); overflow-x: hidden; line-height: 1.6; }
-        html { scroll-behavior: smooth; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* --- FIX 1: NAVBAR ALIGNMENT --- */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 90px; padding: 0 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(5, 5, 5, 0.95);
-            border-bottom: 1px solid rgba(163, 17, 17, 0.2); backdrop-filter: blur(15px);
-        }
-        .nav-logo { display: flex; align-items: center; height: 100%; }
-        .nav-logo img { height: 60px; width: auto; filter: drop-shadow(0 0 10px var(--crimson-glow)); object-fit: contain; }
-        
-        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); white-space: nowrap; }
-        .nav-links a:hover { color: var(--crimson); text-shadow: 0 0 8px var(--crimson); }
+<style>
 
-        /* --- FIX 2: GLOBAL SPACING --- */
-        section { padding: 120px 8% 80px 8%; position: relative; width: 100%; clear: both; }
-        .hero { height: 100vh; padding: 0 8%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070') no-repeat center center/cover; }
-        
-        .section-title { text-align: center; margin-bottom: 60px; width: 100%; }
-        .section-title h3 { font-size: 2rem; text-transform: uppercase; letter-spacing: 4px; position: relative; display: inline-block; padding-bottom: 15px; }
-        .section-title h3::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--crimson); }
+:root{
+--bg:#050505;
+--card:#111;
+--red:#a31111;
+--white:#fff;
+--gray:#aaa;
+}
 
-        .btn { padding: 16px 35px; text-decoration: none; text-transform: uppercase; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; transition: var(--transition); border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
-        .btn-crimson { background: var(--crimson); color: white; }
-        .btn-crimson:hover { transform: translateY(-3px); box-shadow: 0 0 20px var(--crimson-glow); background: #c11212; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
-        /* --- DIFERENCIAIS --- */
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-top: 20px; }
-        .benefit-card { background: var(--dark-card); padding: 40px 30px; border-radius: 8px; border: 1px solid rgba(163, 17, 17, 0.1); text-align: center; transition: var(--transition); height: 100%; }
-        .benefit-card i { font-size: 2.5rem; color: var(--crimson); margin-bottom: 20px; }
-        .benefit-card h4 { font-size: 1rem; text-transform: uppercase; margin-bottom: 15px; color: var(--white); }
-        .benefit-card p { font-size: 0.85rem; color: var(--gray); }
-        .benefit-card:hover { border-color: var(--crimson); transform: translateY(-10px); }
+body{
+background:var(--bg);
+color:var(--white);
+overflow-x:hidden;
+}
 
-        /* --- FIX 3 & 4: FULL AI QUESTIONNAIRE & SCORING --- */
-        #quiz-section { background: #080808; overflow: hidden; }
-        .quiz-container { max-width: 900px; margin: 0 auto; background: var(--dark-card); padding: 50px; border-radius: 12px; border: 1px solid rgba(163, 17, 17, 0.3); }
-        
-        .progress-container { margin-bottom: 40px; }
-        .progress-bar { height: 4px; background: #222; border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--crimson); width: 12.5%; transition: 0.5s ease; box-shadow: 0 0 10px var(--crimson); }
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.9);
+backdrop-filter:blur(10px);
+z-index:999;
+border-bottom:1px solid rgba(163,17,17,0.2);
+}
 
-        .quiz-step { display: none; animation: fadeIn 0.5s ease; }
-        .quiz-step.active { display: block; }
-        .quiz-step h4 { font-size: 1.4rem; text-align: center; margin-bottom: 35px; color: var(--white); }
+nav img{height:55px}
 
-        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .option-card { background: #1a1a1a; padding: 25px; border-radius: 8px; border: 1px solid #333; cursor: pointer; text-align: center; transition: var(--transition); font-size: 0.9rem; color: var(--silver); display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .option-card i { font-size: 1.2rem; color: var(--crimson); }
-        .option-card:hover { border-color: var(--crimson); background: #222; transform: scale(1.02); }
-        .option-card.selected { border-color: var(--crimson); background: rgba(163, 17, 17, 0.15); box-shadow: 0 0 20px var(--crimson-glow); color: var(--white); }
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
 
-        .ai-loader { display: none; text-align: center; padding: 60px 0; }
-        .spinner { width: 60px; height: 60px; border: 4px solid #222; border-top: 4px solid var(--crimson); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+nav a{
+color:white;
+text-decoration:none;
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+transition:0.3s;
+}
 
-        /* --- RESULTS --- */
-        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
-        .car-result-card { background: #1a1a1a; border-radius: 10px; overflow: hidden; border: 1px solid #333; transition: var(--transition); }
-        .car-img { height: 180px; background-size: cover; background-position: center; border-bottom: 2px solid var(--crimson); }
-        .car-info { padding: 25px; }
-        .car-info h5 { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 8px; color: var(--white); }
-        .car-price-tag { color: var(--crimson); font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 15px; }
-        .tag-container { display: flex; flex-wrap: wrap; gap: 6px; }
-        .tag { font-size: 0.65rem; background: #333; padding: 4px 10px; border-radius: 4px; color: var(--silver); text-transform: uppercase; }
+nav a:hover{color:var(--red)}
 
-        /* --- SOBRE & SERVIÇOS --- */
-        .about-container { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 320px; }
-        .about-image-wrapper { flex: 1; min-width: 320px; position: relative; }
-        .about-image img { width: 100%; border-radius: 8px; display: block; border: 1px solid rgba(255,255,255,0.05); }
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(#000a,#000e),
+url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070') center/cover;
+}
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: var(--dark-card); padding: 50px 30px; text-align: center; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: var(--transition); }
-        .service-card i { font-size: 3rem; color: var(--crimson); margin-bottom: 25px; filter: drop-shadow(0 0 5px var(--crimson)); }
+.hero h1{
+font-size:3rem;
+letter-spacing:4px;
+}
 
-        /* --- SHOWROOM --- */
-        .showroom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .showroom-item { position: relative; overflow: hidden; aspect-ratio: 16/10; border-radius: 8px; }
-        .showroom-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .showroom-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; background: rgba(0,0,0,0.6); transition: var(--transition); }
-        .showroom-item:hover .showroom-overlay { opacity: 1; }
-        .showroom-item:hover img { transform: scale(1.1); }
+.hero p{
+color:var(--gray);
+margin:15px 0;
+}
 
-        /* --- FLOATING BUTTONS --- */
-        .float-btn { position: fixed; right: 30px; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; color: white; text-decoration: none; transition: var(--transition); z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .float-wa { bottom: 30px; background: #25d366; animation: pulse-green 2s infinite; }
-        .float-ig { bottom: 105px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .float-btn:hover { transform: scale(1.1) rotate(5deg); }
+.btn{
+background:var(--red);
+padding:15px 35px;
+color:white;
+text-decoration:none;
+text-transform:uppercase;
+font-size:12px;
+letter-spacing:2px;
+transition:0.3s;
+}
 
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+.btn:hover{
+box-shadow:0 0 20px var(--red);
+transform:translateY(-3px);
+}
 
-        footer { padding: 60px 8%; text-align: center; background: #020202; border-top: 1px solid #111; }
-        .footer-logo img { height: 60px; opacity: 0.6; margin-bottom: 25px; }
+/* SECTIONS */
+section{
+padding:120px 8%;
+}
 
-        /* --- RESPONSIVENESS FIXES --- */
-        @media (max-width: 992px) {
-            nav { padding: 0 5%; }
-            .nav-links { display: none; } /* Mobile menu would go here */
-            section { padding: 100px 5% 60px 5%; }
-            .about-container { gap: 40px; }
-        }
+.title{
+text-align:center;
+margin-bottom:60px;
+}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+.title h2{
+letter-spacing:3px;
+text-transform:uppercase;
+}
+
+/* BENEFITS */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:var(--card);
+padding:35px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--red);
+}
+
+.card i{
+font-size:30px;
+margin-bottom:15px;
+color:var(--red);
+}
+
+/* QUIZ */
+.quiz{
+max-width:900px;
+margin:auto;
+background:var(--card);
+padding:50px;
+border-radius:12px;
+border:1px solid rgba(163,17,17,0.3);
+}
+
+.options{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.opt{
+background:#1a1a1a;
+padding:20px;
+border-radius:8px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.opt:hover{
+border:1px solid var(--red);
+}
+
+.result{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+/* FLOAT */
+.float{
+position:fixed;
+right:25px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:25px;
+color:white;
+z-index:999;
+}
+
+.wa{bottom:25px;background:#25d366}
+.ig{bottom:95px;background:#c13584}
+
+</style>
 </head>
+
 <body>
 
-    <nav>
-        <div class="nav-logo">
-            <img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg" alt="RR Auto Group">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#quiz-section">Consultoria IA</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#showroom">Showroom</a></li>
-        </ul>
-    </nav>
+<nav>
+<img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg">
+<ul>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#ia">IA</a></li>
+<li><a href="#servicos">Serviços</a></li>
+</ul>
+</nav>
 
-    <section class="hero" id="inicio">
-        <h1 data-aos="fade-down">RR Auto Group</h1>
-        <h2 data-aos="fade-up" data-aos-delay="200">Excelência e Performance em cada detalhe</h2>
-        <a href="#quiz-section" class="btn btn-crimson" data-aos="zoom-in" data-aos-delay="400">Descobrir Meu Carro</a>
-    </section>
+<section class="hero" id="inicio">
+<h1>RR Auto Group</h1>
+<p>Alto padrão automotivo • Veículos selecionados</p>
+<a href="#ia" class="btn">Descobrir carro ideal</a>
+</section>
 
-    <section id="porque-escolher">
-        <div class="section-title" data-aos="fade-up">
-            <h3>Por que a RR Auto Group?</h3>
-        </div>
-        <div class="benefits-grid">
-            <div class="benefit-card" data-aos="fade-up">
-                <i class="fas fa-gem"></i>
-                <h4>Curadoria de Elite</h4>
-                <p>Apenas veículos aprovados em mais de 150 itens de inspeção rigorosa.</p>
-            </div>
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-handshake"></i>
-                <h4>Negociação Premium</h4>
-                <p>Transparência absoluta e as melhores taxas para o mercado de luxo.</p>
-            </div>
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-shipping-fast"></i>
-                <h4>Logística Exclusiva</h4>
-                <p>Entregamos seu novo veículo em qualquer lugar do Brasil com segurança.</p>
-            </div>
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Pós-Venda VIP</h4>
-                <p>Suporte completo para manutenção e valorização futura do seu ativo.</p>
-            </div>
-        </div>
-    </section>
+<section>
+<div class="title"><h2>Diferenciais</h2></div>
+<div class="grid">
+<div class="card"><i class="fas fa-gem"></i>Seleção Premium</div>
+<div class="card"><i class="fas fa-shield-alt"></i>Segurança total</div>
+<div class="card"><i class="fas fa-handshake"></i>Negociação inteligente</div>
+<div class="card"><i class="fas fa-star"></i>Alto padrão</div>
+</div>
+</section>
 
-    <section id="sobre" style="background: #080808;">
-        <div class="about-container">
-            <div class="about-text" data-aos="fade-right">
-                <h3 style="font-size: 2rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 3px;">Tradição em Performance</h3>
-                <p style="color: var(--gray); border-left: 3px solid var(--crimson); padding-left: 25px; margin-bottom: 20px;">Com anos de atuação no mercado de alto padrão, a RR Auto Group se consolidou como referência para quem busca exclusividade e procedência.</p>
-                <p style="color: var(--gray); padding-left: 28px;">Nosso estoque é composto por máquinas que unem engenharia de ponta e design atemporal.</p>
-            </div>
-            <div class="about-image-wrapper" data-aos="fade-left">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000" alt="Supercar">
-                </div>
-                <div class="floating-badge">Qualidade Certificada</div>
-            </div>
-        </div>
-    </section>
+<section id="ia">
+<div class="title"><h2>Descubra seu carro ideal</h2></div>
 
-    <section id="quiz-section">
-        <div class="section-title" data-aos="fade-up">
-            <h3>Descubra o carro ideal para você</h3>
-            <p style="color: var(--gray); margin-top: 10px;">Algoritmo inteligente de match automotivo</p>
-        </div>
-        
-        <div class="quiz-container" data-aos="fade-up">
-            <div class="progress-container">
-                <div class="progress-bar"><div class="progress-fill" id="progress-bar"></div></div>
-            </div>
-            
-            <div id="quiz-steps-container">
-                <div class="quiz-step active" data-step="1">
-                    <h4>1. Qual o seu orçamento?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('budget', 'baixo')"><i class="fas fa-wallet"></i> Até R$ 80k</div>
-                        <div class="option-card" onclick="selectOpt('budget', 'medio')"><i class="fas fa-money-bill-wave"></i> R$ 80k - 150k</div>
-                        <div class="option-card" onclick="selectOpt('budget', 'alto')"><i class="fas fa-credit-card"></i> R$ 150k - 250k</div>
-                        <div class="option-card" onclick="selectOpt('budget', 'premium')"><i class="fas fa-crown"></i> R$ 250k - 400k</div>
-                        <div class="option-card" onclick="selectOpt('budget', 'luxo')"><i class="fas fa-gem"></i> Acima de R$ 400k</div>
-                    </div>
-                </div>
+<div class="quiz">
 
-                <div class="quiz-step" data-step="2">
-                    <h4>2. Qual o principal uso do carro?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('usage', 'cidade')">Uso Urbano / Diário</div>
-                        <div class="option-card" onclick="selectOpt('usage', 'familia')">Família / Espaço</div>
-                        <div class="option-card" onclick="selectOpt('usage', 'viagem')">Viagens Longas</div>
-                        <div class="option-card" onclick="selectOpt('usage', 'esportivo')">Track Day / Esporte</div>
-                    </div>
-                </div>
+<p>Qual tipo?</p>
+<div class="options">
+<div class="opt" onclick="setAns('type','SUV')">SUV</div>
+<div class="opt" onclick="setAns('type','sedan')">Sedan</div>
+<div class="opt" onclick="setAns('type','esportivo')">Esportivo</div>
+</div>
 
-                <div class="quiz-step" data-step="3">
-                    <h4>3. Quantas pessoas usarão o carro?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('passengers', '1-2')">1 - 2 Pessoas</div>
-                        <div class="option-card" onclick="selectOpt('passengers', '3-5')">3 - 5 Pessoas</div>
-                        <div class="option-card" onclick="selectOpt('passengers', '5+')">Mais de 5 Pessoas</div>
-                    </div>
-                </div>
+<p style="margin-top:20px">Uso:</p>
+<div class="options">
+<div class="opt" onclick="setAns('usage','familia')">Família</div>
+<div class="opt" onclick="setAns('usage','cidade')">Dia a dia</div>
+<div class="opt" onclick="setAns('usage','esportivo')">Esportivo</div>
+</div>
 
-                <div class="quiz-step" data-step="4">
-                    <h4>4. O que você mais valoriza?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('focus', 'economy')">Economia / Eficiência</div>
-                        <div class="option-card" onclick="selectOpt('focus', 'comfort')">Conforto / Tecnologia</div>
-                        <div class="option-card" onclick="selectOpt('focus', 'performance')">Potência / Performance</div>
-                        <div class="option-card" onclick="selectOpt('focus', 'luxury')">Luxo / Exclusividade</div>
-                    </div>
-                </div>
+<div class="result" id="res"></div>
 
-                <div class="quiz-step" data-step="5">
-                    <h4>5. Qual tipo de carroceria prefere?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('type', 'SUV')">SUV / Crossover</div>
-                        <div class="option-card" onclick="selectOpt('type', 'sedan')">Sedan</div>
-                        <div class="option-card" onclick="selectOpt('type', 'esportivo')">Esportivo / Coupé</div>
-                        <div class="option-card" onclick="selectOpt('type', 'picape')">Picape</div>
-                    </div>
-                </div>
+</div>
+</section>
 
-                <div class="quiz-step" data-step="6">
-                    <h4>6. Importância da eficiência energética?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('fuel', 'high')">Muito Importante (Híbrido/Flex)</div>
-                        <div class="option-card" onclick="selectOpt('fuel', 'low')">Indiferente (Foco em Performance)</div>
-                    </div>
-                </div>
+<section id="servicos">
+<div class="title"><h2>Serviços</h2></div>
+<div class="grid">
+<div class="card">Compra e venda</div>
+<div class="card">Consultoria premium</div>
+<div class="card">Veículos exclusivos</div>
+</div>
+</section>
 
-                <div class="quiz-step" data-step="7">
-                    <h4>7. Preferência de marca?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('brand', 'popular')">Marcas Consolidadas</div>
-                        <div class="option-card" onclick="selectOpt('brand', 'premium')">Marcas Premium (Alemãs/Luxo)</div>
-                    </div>
-                </div>
+<a href="https://wa.me/5513997011215" class="float wa"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.instagram.com/autogrouprr" class="float ig"><i class="fab fa-instagram"></i></a>
 
-                <div class="quiz-step" data-step="8">
-                    <h4>8. Altura da posição de dirigir?</h4>
-                    <div class="options-grid">
-                        <div class="option-card" onclick="selectOpt('height', 'alto')">Posição Alta (Visibilidade)</div>
-                        <div class="option-card" onclick="selectOpt('height', 'baixo')">Posição Baixa (Esportividade)</div>
-                    </div>
-                </div>
-            </div>
+<script>
 
-            <div class="ai-loader" id="loader">
-                <div class="spinner"></div>
-                <p>Analisando centenas de combinações...</p>
-            </div>
+const cars=[
+{name:"Audi Q3",type:"SUV",usage:"familia"},
+{name:"BMW 320i",type:"sedan",usage:"cidade"},
+{name:"Porsche 718",type:"esportivo",usage:"esportivo"}
+];
 
-            <div id="results-area" style="display:none;">
-                <h4 style="text-align:center; margin-bottom:10px;">Matches Encontrados</h4>
-                <p style="text-align:center; color: var(--gray); font-size: 0.8rem; margin-bottom: 30px;">Com base no seu perfil e orçamento</p>
-                <div class="results-grid" id="results-container"></div>
-                <div style="text-align:center; margin-top:40px;">
-                    <button class="btn btn-crimson" onclick="location.reload()">Novo Teste</button>
-                </div>
-            </div>
-        </div>
-    </section>
+const ans={};
 
-    <section id="servicos">
-        <div class="section-title" data-aos="fade-up">
-            <h3>Serviços Exclusivos</h3>
-        </div>
-        <div class="services-grid">
-            <div class="service-card" data-aos="fade-up">
-                <i class="fas fa-handshake"></i>
-                <h4>Intermediação</h4>
-                <p>Cuidamos de toda a venda do seu veículo para garantir o melhor valor.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-search-plus"></i>
-                <h4>Personal Car</h4>
-                <p>Encontramos o veículo específico com o histórico que você exige.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <h4>Consultoria</h4>
-                <p>Avaliação técnica e documental completa para compras seguras.</p>
-            </div>
-        </div>
-    </section>
+function setAns(k,v){
+ans[k]=v;
+calc();
+}
 
-    <section id="showroom" style="background: #080808;">
-        <div class="section-title" data-aos="fade-up">
-            <h3>Portfólio</h3>
-        </div>
-        <div class="showroom-grid">
-            <div class="showroom-item" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=800" alt="Supercar">
-                <div class="showroom-overlay"><i class="fab fa-instagram" style="font-size: 2rem;"></i></div>
-            </div>
-            <div class="showroom-item" data-aos="zoom-in" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=800" alt="Supercar">
-                <div class="showroom-overlay"><i class="fab fa-instagram" style="font-size: 2rem;"></i></div>
-            </div>
-            <div class="showroom-item" data-aos="zoom-in" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=800" alt="Supercar">
-                <div class="showroom-overlay"><i class="fab fa-instagram" style="font-size: 2rem;"></i></div>
-            </div>
-        </div>
-    </section>
+function calc(){
+let r=cars.filter(c=>{
+if(ans.type && c.type!==ans.type)return false;
+if(ans.usage==="familia" && c.type==="esportivo")return false;
+return true;
+});
 
-    <a href="https://www.instagram.com/autogrouprr" class="float-btn float-ig" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/5513997011215" class="float-btn float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+document.getElementById("res").innerHTML=
+r.map(c=>`<div class="card">${c.name}</div>`).join("");
+}
 
-    <footer>
-        <div class="footer-logo">
-            <img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg" alt="RR">
-        </div>
-        <p style="font-size: 0.7rem; color: #555; letter-spacing: 2px; text-transform: uppercase;">© <span id="year"></span> RR Auto Group | Todos os direitos reservados.</p>
-    </footer>
+</script>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-        document.getElementById('year').innerText = new Date().getFullYear();
-
-        // MOTOR DE IA - BANCO DE DADOS REALISTA
-        const database = [
-            { name: "BMW 320i M Sport", budget: "alto", usage: "cidade", focus: "performance", type: "sedan", brand: "premium", height: "baixo", img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80", tags: ["Sedan", "Premium"] },
-            { name: "Audi Q3 TFSI", budget: "alto", usage: "familia", focus: "comfort", type: "SUV", brand: "premium", height: "alto", img: "https://images.unsplash.com/photo-1562141989-c5c79ac8f576?q=80", tags: ["SUV", "Família"] },
-            { name: "Porsche Macan S", budget: "premium", usage: "esportivo", focus: "luxury", type: "SUV", brand: "premium", height: "alto", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80", tags: ["Luxury", "V6"] },
-            { name: "VW Polo GTS", budget: "baixo", usage: "cidade", focus: "performance", type: "hatch", brand: "popular", height: "baixo", img: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80", tags: ["Hatch", "Turbo"] },
-            { name: "Toyota Corolla Hybrid", budget: "medio", usage: "familia", focus: "economy", type: "sedan", brand: "popular", height: "baixo", img: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80", tags: ["Híbrido", "Econômico"] },
-            { name: "Mercedes C63 AMG", budget: "luxo", usage: "esportivo", focus: "performance", type: "sedan", brand: "premium", height: "baixo", img: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80", tags: ["V8", "Performance"] },
-            { name: "Range Rover Velar", budget: "premium", usage: "viagem", focus: "luxury", type: "SUV", brand: "premium", height: "alto", img: "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?q=80", tags: ["Luxury", "Status"] },
-            { name: "Volvo XC40", budget: "alto", usage: "familia", focus: "economy", type: "SUV", brand: "premium", height: "alto", img: "https://images.unsplash.com/photo-1630136641699-981881594817?q=80", tags: ["Híbrido", "Segurança"] }
-        ];
-
-        let currentStep = 1;
-        const answers = {};
-
-        function selectOpt(key, val) {
-            answers[key] = val;
-            const currentDiv = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
-            currentDiv.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-            event.currentTarget.classList.add('selected');
-
-            setTimeout(() => {
-                if(currentStep < 8) {
-                    currentDiv.classList.remove('active');
-                    currentStep++;
-                    document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.add('active');
-                    document.getElementById('progress-bar').style.width = (currentStep / 8 * 100) + '%';
-                } else {
-                    processAI();
-                }
-            }, 400);
-        }
-
-        function processAI() {
-            document.getElementById('quiz-steps-container').style.display = 'none';
-            document.getElementById('loader').style.display = 'block';
-
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                calculateResults();
-            }, 2000);
-        }
-
-        function calculateResults() {
-            // Filtragem estrita por orçamento
-            let filtered = database.filter(car => car.budget === answers.budget);
-            if(filtered.length === 0) filtered = database; // Fallback
-
-            // Scoring
-            filtered.forEach(car => {
-                let score = 0;
-                if(car.usage === answers.usage) score += 3;
-                if(car.type === answers.type) score += 2;
-                if(car.focus === answers.focus) score += 2;
-                if(car.brand === answers.brand) score += 1;
-                if(car.height === answers.height) score += 1;
-                car.lastScore = score;
-            });
-
-            filtered.sort((a, b) => b.lastScore - a.lastScore);
-            const top3 = filtered.slice(0, 3);
-
-            const container = document.getElementById('results-container');
-            top3.forEach(car => {
-                container.innerHTML += `
-                    <div class="car-result-card">
-                        <div class="car-img" style="background-image:url('${car.img}')"></div>
-                        <div class="car-info">
-                            <h5>${car.name}</h5>
-                            <span class="car-price-tag">Consulte Condições VIP</span>
-                            <div class="tag-container">
-                                ${car.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('results-area').style.display = 'block';
-        }
-    </script>
 </body>
 </html>
