@@ -51,29 +51,63 @@
         .hero h1 { font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 12px; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
         .hero h2 { color: var(--crimson); font-size: clamp(0.8rem, 4vw, 1.2rem); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 35px; }
 
-        .btn { padding: 15px 35px; text-decoration: none; text-transform: uppercase; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; transition: var(--transition); border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; }
-        .btn-crimson { background: var(--crimson); color: white; border: 1px solid transparent; }
+        .btn { padding: 15px 35px; text-decoration: none; text-transform: uppercase; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; transition: var(--transition); border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-crimson { background: var(--crimson); color: white; }
         .btn-crimson:hover { transform: translateY(-3px); box-shadow: 0 0 20px var(--crimson-glow); background: #c11212; }
 
-        /* --- EFEITOS LUMINOSOS NAS BORDAS --- */
+        /* --- SECTIONS --- */
         section { padding: 80px 8%; }
-        .service-card, .showroom-item, .about-image {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h3 { font-size: 2rem; text-transform: uppercase; letter-spacing: 4px; position: relative; display: inline-block; }
+        .section-title h3::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--crimson); }
+
+        /* --- QUIZ AI SECTION (NEW) --- */
+        #quiz-section { background: linear-gradient(180deg, #050505 0%, #0f0f0f 100%); position: relative; overflow: hidden; }
+        .quiz-container { max-width: 900px; margin: 0 auto; background: var(--dark-card); padding: 50px; border-radius: 12px; border: 1px solid rgba(163, 17, 17, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; z-index: 2; }
+        
+        .quiz-step { display: none; animation: fadeIn 0.5s ease; }
+        .quiz-step.active { display: block; }
+
+        .question-label { display: block; font-size: 1.4rem; font-weight: 600; margin-bottom: 30px; text-align: center; color: var(--silver); }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        
+        .option-card {
+            background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333;
+            cursor: pointer; text-align: center; transition: var(--transition); font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center; min-height: 80px;
         }
-        .service-card:hover { 
-            border-color: var(--crimson); 
-            box-shadow: 0 0 25px rgba(163, 17, 17, 0.3);
-            transform: translateY(-10px);
-        }
+        .option-card:hover { border-color: var(--crimson); background: #222; }
+        .option-card.selected { border-color: var(--crimson); background: rgba(163, 17, 17, 0.1); box-shadow: 0 0 15px var(--crimson-glow); color: var(--white); }
+
+        .quiz-navigation { display: flex; justify-content: space-between; margin-top: 40px; }
+        .progress-bar { width: 100%; height: 4px; background: #222; margin-bottom: 40px; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--crimson); width: 16.6%; transition: width 0.4s ease; box-shadow: 0 0 10px var(--crimson); }
+
+        /* --- RESULTS --- */
+        #quiz-loading { display: none; text-align: center; padding: 50px; }
+        .loader { width: 50px; height: 50px; border: 3px solid #333; border-top: 3px solid var(--crimson); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        #quiz-results { display: none; animation: slideUp 0.6s ease; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .car-result-card { background: #1a1a1a; border-radius: 8px; overflow: hidden; border: 1px solid #333; transition: var(--transition); }
+        .car-result-card:hover { transform: translateY(-10px); border-color: var(--crimson); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .car-img { width: 100%; height: 180px; background-size: cover; background-position: center; border-bottom: 2px solid var(--crimson); }
+        .car-info { padding: 20px; }
+        .car-info h4 { text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; color: var(--white); }
+        .car-price { color: var(--crimson); font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+        .car-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .tag { font-size: 0.65rem; background: #333; padding: 3px 8px; border-radius: 4px; color: var(--silver); text-transform: uppercase; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- SOBRE --- */
         .about-container { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
         .about-text { flex: 1; min-width: 300px; }
         .about-image-wrapper { flex: 1; min-width: 300px; position: relative; }
-        .about-image img { width: 100%; border-radius: 4px; display: block; }
+        .about-image img { width: 100%; border-radius: 4px; display: block; border: 1px solid rgba(255,255,255,0.05); }
         
-        /* SELO FLUTUANTE */
         .floating-badge {
             position: absolute; top: -15px; right: -15px; background: var(--crimson);
             padding: 12px 20px; border-radius: 4px; font-weight: 700; font-size: 0.7rem;
@@ -84,12 +118,13 @@
 
         /* --- SERVIÇOS --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .service-card { background: var(--dark-card); padding: 45px 30px; text-align: center; border-radius: 4px; }
+        .service-card { background: var(--dark-card); padding: 45px 30px; text-align: center; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: var(--transition); }
         .service-card i { font-size: 2.5rem; color: var(--crimson); margin-bottom: 20px; filter: drop-shadow(0 0 5px var(--crimson)); }
+        .service-card:hover { border-color: var(--crimson); transform: translateY(-10px); box-shadow: 0 0 25px rgba(163, 17, 17, 0.2); }
 
         /* --- SHOWROOM --- */
         .showroom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .showroom-item { position: relative; overflow: hidden; aspect-ratio: 1/1; border-radius: 4px; }
+        .showroom-item { position: relative; overflow: hidden; aspect-ratio: 1/1; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
         .showroom-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .showroom-item:hover img { transform: scale(1.1); filter: brightness(0.5); }
         .showroom-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition); text-decoration: none; }
@@ -97,16 +132,14 @@
         .showroom-overlay i { font-size: 2rem; color: white; filter: drop-shadow(0 0 10px var(--crimson)); }
 
         /* --- BOTÕES FLUTUANTES --- */
-        .social-float { position: fixed; right: 25px; z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
         .float-btn {
-            width: 55px; height: 55px; border-radius: 50%; display: flex;
-            justify-content: center; align-items: center; font-size: 26px;
-            color: white; text-decoration: none; transition: var(--transition);
+            position: fixed; right: 30px; width: 55px; height: 55px; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; font-size: 26px;
+            color: white; text-decoration: none; transition: var(--transition); z-index: 1000;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
         .float-wa { bottom: 30px; background: #25d366; animation: pulse-green 2s infinite; }
         .float-ig { bottom: 100px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        
         .float-btn:hover { transform: scale(1.1) rotate(8deg); }
 
         @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
@@ -115,7 +148,7 @@
         .footer-logo img { height: 70px; filter: grayscale(1); opacity: 0.5; margin-bottom: 20px; }
         .copy { font-size: 0.7rem; color: #444; letter-spacing: 1px; }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .about-container { flex-direction: column; text-align: center; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .about-container { flex-direction: column; text-align: center; } .quiz-container { padding: 30px 20px; } }
     </style>
 </head>
 <body>
@@ -127,6 +160,7 @@
         <ul class="nav-links">
             <li><a href="#inicio">Início</a></li>
             <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#descobrir">IA Match</a></li>
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#showroom">Showroom</a></li>
         </ul>
@@ -135,14 +169,14 @@
     <section class="hero" id="inicio">
         <h1 data-aos="fade-down">RR Auto Group</h1>
         <h2 data-aos="fade-up" data-aos-delay="200">A Máxima Performance em Suas Mãos</h2>
-        <a href="https://wa.me/5513997011215" target="_blank" class="btn btn-crimson" data-aos="zoom-in" data-aos-delay="400">Ver Estoque</a>
+        <a href="#descobrir" class="btn btn-crimson" data-aos="zoom-in" data-aos-delay="400">Encontrar meu Carro Ideal</a>
     </section>
 
     <section id="sobre" style="background: #080808;">
         <div class="about-container">
             <div class="about-text" data-aos="fade-right">
-                <h3 style="font-size: 2rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px;">RR Auto Group</h3>
-                <p style="color: var(--gray); border-left: 3px solid var(--crimson); padding-left: 20px;">Especialistas no mercado de luxo e alta performance, entregamos mais que veículos: entregamos experiências exclusivas com procedência garantida e transparência total.</p>
+                <h3 style="font-size: 2rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px;">Elite Automotiva</h3>
+                <p style="color: var(--gray); border-left: 3px solid var(--crimson); padding-left: 20px;">Curadoria especializada para clientes que não aceitam nada menos que a perfeição. Na RR Auto Group, cada veículo é uma obra de arte da engenharia.</p>
             </div>
             <div class="about-image-wrapper" data-aos="fade-left">
                 <div class="about-image">
@@ -153,32 +187,124 @@
         </div>
     </section>
 
+    <section id="quiz-section">
+        <div id="descobrir" style="position: absolute; top: -100px;"></div>
+        <div class="section-title" data-aos="fade-up">
+            <h3>Descubra o carro ideal para você</h3>
+            <p style="color: var(--gray); margin-top: 15px;">Nosso assistente inteligente analisa seu perfil em segundos.</p>
+        </div>
+
+        <div class="quiz-container" data-aos="fade-up">
+            <div class="progress-bar">
+                <div class="progress-fill" id="quiz-progress"></div>
+            </div>
+
+            <div class="quiz-step active" data-step="1">
+                <span class="question-label">1. Qual seu orçamento?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(1, 'Até R$ 100 mil')">Até R$ 100 mil</div>
+                    <div class="option-card" onclick="selectOption(1, 'R$ 100k a R$ 200k')">R$ 100k a R$ 200k</div>
+                    <div class="option-card" onclick="selectOption(1, 'R$ 200k a R$ 400k')">R$ 200k a R$ 400k</div>
+                    <div class="option-card" onclick="selectOption(1, 'Acima de R$ 400k')">Acima de R$ 400k</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="2">
+                <span class="question-label">2. Qual o principal uso?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(2, 'Cidade')">Cidade</div>
+                    <div class="option-card" onclick="selectOption(2, 'Família')">Família</div>
+                    <div class="option-card" onclick="selectOption(2, 'Viagens')">Viagens</div>
+                    <div class="option-card" onclick="selectOption(2, 'Esportivo')">Esportivo</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="3">
+                <span class="question-label">3. Quantas pessoas usam o carro?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(3, '1-2')">1-2 Pessoas</div>
+                    <div class="option-card" onclick="selectOption(3, '3-5')">3-5 Pessoas</div>
+                    <div class="option-card" onclick="selectOption(3, '5+')">5+ Pessoas</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="4">
+                <span class="question-label">4. O que você mais valoriza?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(4, 'Economia')">Economia</div>
+                    <div class="option-card" onclick="selectOption(4, 'Conforto')">Conforto</div>
+                    <div class="option-card" onclick="selectOption(4, 'Desempenho')">Desempenho</div>
+                    <div class="option-card" onclick="selectOption(4, 'Luxo/Status')">Luxo / Status</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="5">
+                <span class="question-label">5. Tipo de carro preferido?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(5, 'SUV')">SUV</div>
+                    <div class="option-card" onclick="selectOption(5, 'Sedan')">Sedan</div>
+                    <div class="option-card" onclick="selectOption(5, 'Esportivo')">Esportivo</div>
+                    <div class="option-card" onclick="selectOption(5, 'Indiferente')">Indiferente</div>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-step="6">
+                <span class="question-label">6. Qual o combustível ideal?</span>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(6, 'Econômico')">Econômico (Flex/Híbrido)</div>
+                    <div class="option-card" onclick="selectOption(6, 'Gasolina')">Gasolina Premium</div>
+                    <div class="option-card" onclick="selectOption(6, 'Tanto faz')">Indiferente</div>
+                </div>
+            </div>
+
+            <div id="quiz-loading">
+                <div class="loader"></div>
+                <p>Analisando perfil e consultando estoque...</p>
+            </div>
+
+            <div id="quiz-results">
+                <h4 style="text-align: center; font-size: 1.5rem; margin-bottom: 30px;">Match Encontrado!</h4>
+                <div class="results-grid" id="results-container">
+                    </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-crimson" onclick="resetQuiz()">Refazer Teste</button>
+                    <a href="https://wa.me/5513997011215" target="_blank" class="btn" style="border: 1px solid var(--crimson); margin-left: 10px;">Consultar Estoque Real</a>
+                </div>
+            </div>
+
+            <div class="quiz-navigation" id="quiz-nav">
+                <button class="btn" id="prevBtn" onclick="changeStep(-1)" style="color: var(--gray); padding: 10px 20px;" disabled>Voltar</button>
+                <button class="btn btn-crimson" id="nextBtn" onclick="changeStep(1)" style="padding: 10px 30px;" disabled>Próximo</button>
+            </div>
+        </div>
+    </section>
+
     <section id="servicos">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h3 style="text-transform: uppercase; letter-spacing: 4px;">Nossa Expertise</h3>
+        <div class="section-title" data-aos="fade-up">
+            <h3>Nossa Expertise</h3>
         </div>
         <div class="services-grid">
             <div class="service-card" data-aos="fade-up">
                 <i class="fas fa-handshake"></i>
                 <h4>Intermediação</h4>
-                <p>Venda seu veículo com segurança e valorização de mercado.</p>
+                <p>Segurança e a melhor valorização do seu patrimônio.</p>
             </div>
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <i class="fas fa-search"></i>
                 <h4>Personal Car</h4>
-                <p>Encontramos o carro dos seus sonhos sob encomenda exclusiva.</p>
+                <p>Buscamos o veículo exato para a sua necessidade.</p>
             </div>
             <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-shield-alt"></i>
                 <h4>Consultoria</h4>
-                <p>Análise técnica e cautelar para garantir sua melhor compra.</p>
+                <p>Análise técnica especializada para sua total tranquilidade.</p>
             </div>
         </div>
     </section>
 
     <section id="showroom" style="background: #080808;">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h3 style="text-transform: uppercase; letter-spacing: 4px;">Destaques</h3>
+        <div class="section-title" data-aos="fade-up">
+            <h3>Destaques</h3>
         </div>
         <div class="showroom-grid">
             <div class="showroom-item" data-aos="zoom-in">
@@ -196,10 +322,10 @@
         </div>
     </section>
 
-    <a href="https://www.instagram.com/autogrouprr" class="float-btn float-ig" target="_blank" style="bottom: 105px; right: 30px; position: fixed;">
+    <a href="https://www.instagram.com/autogrouprr" class="float-btn float-ig" target="_blank">
         <i class="fab fa-instagram"></i>
     </a>
-    <a href="https://wa.me/5513997011215" class="float-btn float-wa" target="_blank" style="bottom: 30px; right: 30px; position: fixed;">
+    <a href="https://wa.me/5513997011215" class="float-btn float-wa" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -214,6 +340,120 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         document.getElementById('year').innerText = new Date().getFullYear();
+
+        // --- QUIZ LOGIC ---
+        let currentStep = 1;
+        const totalSteps = 6;
+        const answers = {};
+
+        function selectOption(step, value) {
+            answers[step] = value;
+            
+            // Highlight selected
+            const stepDiv = document.querySelector(`.quiz-step[data-step="${step}"]`);
+            stepDiv.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+                if(card.innerText.includes(value)) card.classList.add('selected');
+            });
+
+            document.getElementById('nextBtn').disabled = false;
+            
+            // Auto-advance
+            setTimeout(() => {
+                if(currentStep < totalSteps) changeStep(1);
+                else finishQuiz();
+            }, 400);
+        }
+
+        function changeStep(n) {
+            const steps = document.querySelectorAll('.quiz-step');
+            steps[currentStep - 1].classList.remove('active');
+            
+            currentStep += n;
+            steps[currentStep - 1].classList.add('active');
+
+            // Update Progress
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('quiz-progress').style.width = progress + '%';
+
+            // Nav buttons
+            document.getElementById('prevBtn').disabled = currentStep === 1;
+            document.getElementById('nextBtn').disabled = !answers[currentStep];
+            
+            if(currentStep > totalSteps) finishQuiz();
+        }
+
+        function finishQuiz() {
+            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('quiz-nav').style.display = 'none';
+            document.getElementById('quiz-loading').style.display = 'block';
+
+            setTimeout(() => {
+                document.getElementById('quiz-loading').style.display = 'none';
+                showResults();
+            }, 2000);
+        }
+
+        function showResults() {
+            const container = document.getElementById('results-container');
+            container.innerHTML = '';
+            
+            // Simple Logic for Recommendations
+            const recs = getRecommendations(answers);
+            
+            recs.forEach(car => {
+                container.innerHTML += `
+                    <div class="car-result-card">
+                        <div class="car-img" style="background-image: url('${car.img}')"></div>
+                        <div class="car-info">
+                            <h4>${car.name}</h4>
+                            <span class="car-price">${car.price}</span>
+                            <p style="font-size: 0.75rem; color: #bbb; margin-bottom: 15px;">${car.desc}</p>
+                            <div class="car-tags">
+                                ${car.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('quiz-results').style.display = 'block';
+        }
+
+        function getRecommendations(ans) {
+            // Mock Data Logic
+            if(ans[5] === 'SUV' || ans[2] === 'Família') {
+                return [
+                    { name: 'Porsche Cayenne', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80', desc: 'O SUV definitivo que une luxo absoluto e alma esportiva.', tags: ['V8 Turbo', 'Conforto', 'Status'] },
+                    { name: 'BMW X5 M', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80', desc: 'Espaço inteligente com performance de pista.', tags: ['Família', 'Tecnologia'] },
+                    { name: 'Range Rover Sport', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1606611013016-969c19ba27bb?q=80', desc: 'A realeza britânica fora de estrada.', tags: ['Off-Road', 'Luxo'] }
+                ];
+            } else if(ans[2] === 'Esportivo' || ans[5] === 'Esportivo') {
+                return [
+                    { name: 'Porsche 911 Carrera', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80', desc: 'O ícone atemporal da engenharia alemã.', tags: ['Flat-6', 'Pura Emoção', 'Ícone'] },
+                    { name: 'BMW M4 Competition', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80', desc: 'Domine as ruas com o máximo torque.', tags: ['Agressivo', 'Desempenho'] },
+                    { name: 'Audi R8 V10', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1603553323145-31623838f712?q=80', desc: 'A sinfonia perfeita de um motor aspirado.', tags: ['V10', 'Exclusivo'] }
+                ];
+            } else {
+                return [
+                    { name: 'Mercedes-Benz C63', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80', desc: 'Elegância executiva com o DNA AMG.', tags: ['V8', 'Executivo', 'Conforto'] },
+                    { name: 'Audi RS6 Avant', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80', desc: 'A station wagon mais rápida do mundo.', tags: ['Família', 'Velocidade'] },
+                    { name: 'BMW M5 CS', price: 'Sob Consulta', img: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80', desc: 'O sedan de luxo em sua forma mais potente.', tags: ['Desempenho', 'Executivo'] }
+                ];
+            }
+        }
+
+        function resetQuiz() {
+            currentStep = 1;
+            for (let member in answers) delete answers[member];
+            document.getElementById('quiz-results').style.display = 'none';
+            document.getElementById('quiz-nav').style.display = 'flex';
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
+            document.getElementById('quiz-progress').style.width = '16.6%';
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('prevBtn').disabled = true;
+        }
     </script>
 </body>
 </html>
