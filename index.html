@@ -3,52 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RR Auto Group | Alto Padrão Automotivo</title>
+<title>RR Auto Group</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
 :root{
 --bg:#050505;
 --card:#111;
---red:#a31111;
+--red:#c11212;
 --white:#fff;
 --gray:#aaa;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
-body{
-background:var(--bg);
-color:var(--white);
-overflow-x:hidden;
+body{background:var(--bg);color:var(--white);overflow-x:hidden}
+
+/* LOADING */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
 }
 
-/* NAVBAR */
+.car{
+width:80px;
+height:40px;
+border:3px solid red;
+border-radius:10px;
+animation:drive 2s infinite;
+}
+
+@keyframes drive{
+0%{transform:translateX(-100px)}
+100%{transform:translateX(100px)}
+}
+
+/* NAV */
 nav{
 position:fixed;
-top:0;
 width:100%;
-padding:20px 8%;
+top:0;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.9);
+padding:20px 8%;
+background:rgba(0,0,0,0.8);
 backdrop-filter:blur(10px);
-z-index:999;
-border-bottom:1px solid rgba(163,17,17,0.2);
+z-index:1000;
 }
 
 nav img{height:55px}
 
-nav ul{
-display:flex;
-gap:30px;
-list-style:none;
-}
+nav ul{display:flex;gap:30px;list-style:none}
 
 nav a{
 color:white;
@@ -56,7 +71,7 @@ text-decoration:none;
 font-size:12px;
 letter-spacing:2px;
 text-transform:uppercase;
-transition:0.3s;
+transition:.3s;
 }
 
 nav a:hover{color:var(--red)}
@@ -74,47 +89,37 @@ url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070') 
 }
 
 .hero h1{
-font-size:3rem;
-letter-spacing:4px;
+font-size:3.5rem;
+letter-spacing:5px;
+animation:fade 1.5s ease;
 }
 
 .hero p{
+margin:20px 0;
 color:var(--gray);
-margin:15px 0;
 }
 
 .btn{
 background:var(--red);
-padding:15px 35px;
-color:white;
+padding:15px 40px;
 text-decoration:none;
+color:white;
 text-transform:uppercase;
-font-size:12px;
 letter-spacing:2px;
-transition:0.3s;
+transition:.3s;
 }
 
 .btn:hover{
 box-shadow:0 0 20px var(--red);
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 
-/* SECTIONS */
-section{
-padding:120px 8%;
-}
+/* SECTION */
+section{padding:120px 8%}
 
-.title{
-text-align:center;
-margin-bottom:60px;
-}
+.title{text-align:center;margin-bottom:60px}
 
-.title h2{
-letter-spacing:3px;
-text-transform:uppercase;
-}
-
-/* BENEFITS */
+/* CARDS */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -123,10 +128,10 @@ gap:25px;
 
 .card{
 background:var(--card);
-padding:35px;
+padding:40px;
 border-radius:10px;
 border:1px solid rgba(255,255,255,0.05);
-transition:0.3s;
+transition:.3s;
 text-align:center;
 }
 
@@ -135,20 +140,13 @@ transform:translateY(-10px);
 border-color:var(--red);
 }
 
-.card i{
-font-size:30px;
-margin-bottom:15px;
-color:var(--red);
-}
-
 /* QUIZ */
 .quiz{
 max-width:900px;
 margin:auto;
 background:var(--card);
 padding:50px;
-border-radius:12px;
-border:1px solid rgba(163,17,17,0.3);
+border-radius:10px;
 }
 
 .options{
@@ -160,10 +158,10 @@ gap:15px;
 .opt{
 background:#1a1a1a;
 padding:20px;
-border-radius:8px;
 cursor:pointer;
+border-radius:8px;
 text-align:center;
-transition:0.3s;
+transition:.3s;
 }
 
 .opt:hover{
@@ -175,6 +173,10 @@ margin-top:40px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
+}
+
+.result .card{
+padding:20px;
 }
 
 /* FLOAT */
@@ -195,10 +197,21 @@ z-index:999;
 .wa{bottom:25px;background:#25d366}
 .ig{bottom:95px;background:#c13584}
 
+/* ANIMATION */
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1}
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="loader">
+<div class="car"></div>
+<p>Carregando experiência premium...</p>
+</div>
 
 <nav>
 <img src="https://i.ibb.co/TqMnVhNj/Whats-App-Image-2026-03-17-at-17-50-51.jpg">
@@ -216,14 +229,11 @@ z-index:999;
 <a href="#ia" class="btn">Descobrir carro ideal</a>
 </section>
 
-<section>
-<div class="title"><h2>Diferenciais</h2></div>
-<div class="grid">
-<div class="card"><i class="fas fa-gem"></i>Seleção Premium</div>
-<div class="card"><i class="fas fa-shield-alt"></i>Segurança total</div>
-<div class="card"><i class="fas fa-handshake"></i>Negociação inteligente</div>
-<div class="card"><i class="fas fa-star"></i>Alto padrão</div>
-</div>
+<section id="sobre">
+<div class="title"><h2>Sobre nós</h2></div>
+<p style="text-align:center;max-width:700px;margin:auto;color:var(--gray)">
+Especialistas em veículos premium e oportunidades exclusivas. Trabalhamos com foco em qualidade, procedência e alto padrão.
+</p>
 </section>
 
 <section id="ia">
@@ -231,7 +241,7 @@ z-index:999;
 
 <div class="quiz">
 
-<p>Qual tipo?</p>
+<p>Tipo de carro:</p>
 <div class="options">
 <div class="opt" onclick="setAns('type','SUV')">SUV</div>
 <div class="opt" onclick="setAns('type','sedan')">Sedan</div>
@@ -259,10 +269,12 @@ z-index:999;
 </div>
 </section>
 
-<a href="https://wa.me/5513997011215" class="float wa"><i class="fab fa-whatsapp"></i></a>
-<a href="https://www.instagram.com/autogrouprr" class="float ig"><i class="fab fa-instagram"></i></a>
+<a href="https://wa.me/5513997011215" class="float wa">W</a>
+<a href="https://www.instagram.com/autogrouprr" class="float ig">I</a>
 
 <script>
+
+setTimeout(()=>{document.getElementById("loader").style.display="none"},2000)
 
 const cars=[
 {name:"Audi Q3",type:"SUV",usage:"familia"},
